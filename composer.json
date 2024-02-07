@@ -1,0 +1,12 @@
+{
+    "name": "hexlet/code",
+    "description": "Hexlet educational PHP project",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "BuyanauskasAA",
+            "email": "Buyanauskas@gmail.com"
+        }
+    ],
+    "require": {}
+}
