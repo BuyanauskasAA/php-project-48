@@ -11,6 +11,14 @@
     "bin": [
         "bin/gendiff"
     ],
+    "autoload": {
+        "psr-4": {
+            "GenDiff\\": "src/"
+        },
+        "files": [
+            "src/GenDiff.php"
+        ]
+    },
     "require": {
         "docopt/docopt": "^1.0"
     }
