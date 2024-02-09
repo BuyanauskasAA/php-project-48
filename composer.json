@@ -16,7 +16,8 @@
             "GenDiff\\": "src/"
         },
         "files": [
-            "src/GenDiff.php"
+            "src/GenDiff.php",
+            "src/Utils.php"
         ]
     },
     "require": {
