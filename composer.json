@@ -17,7 +17,8 @@
         },
         "files": [
             "src/GenDiff.php",
-            "src/Utils.php"
+            "src/Utils.php",
+            "src/Parser.php"
         ]
     },
     "require": {

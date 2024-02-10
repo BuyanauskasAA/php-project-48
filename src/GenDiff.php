@@ -3,11 +3,12 @@
 namespace GenDiff;
 
 use function GenDiff\Utils\toString;
+use function GenDiff\Parser\parseFile;
 
 function genDiff(string $filepath1, string $filepath2): string
 {
-    $data1 = json_decode(file_get_contents($filepath1), true);
-    $data2 = json_decode(file_get_contents($filepath2), true);
+    $data1 = parseFile($filepath1);
+    $data2 = parseFile($filepath2);
 
     $keys = array_keys([...$data1, ...$data2]);
     sort($keys);
