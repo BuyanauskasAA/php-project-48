@@ -2,7 +2,7 @@
 
 namespace GenDiff;
 
-use function GenDiff\Utils\formatToString;
+use function GenDiff\Utils\toString;
 
 function genDiff(string $filepath1, string $filepath2): string
 {
@@ -15,18 +15,18 @@ function genDiff(string $filepath1, string $filepath2): string
     $diffs = array_map(function ($key) use ($data1, $data2) {
         $result = [];
         if (!array_key_exists($key, $data1)) {
-            $value = formatToString($data2[$key]);
+            $value = toString($data2[$key]);
             $result[] = "  + {$key}: {$value}";
         } elseif (!array_key_exists($key, $data2)) {
-            $value = formatToString($data1[$key]);
+            $value = toString($data1[$key]);
             $result[] = "  - {$key}: {$value}";
         } elseif ($data1[$key] !== $data2[$key]) {
-            $value1 = formatToString($data1[$key]);
-            $value2 = formatToString($data2[$key]);
+            $value1 = toString($data1[$key]);
+            $value2 = toString($data2[$key]);
             $result[] = "  - {$key}: {$value1}";
             $result[] = "  + {$key}: {$value2}";
         } else {
-            $value = formatToString($data1[$key]);
+            $value = toString($data1[$key]);
             $result[] = "    {$key}: {$value}";
         }
 

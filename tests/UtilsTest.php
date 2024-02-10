@@ -9,13 +9,13 @@ class UtilsTest extends TestCase
 {
     public function testUtils(): void
     {
-        $this->assertEquals('string', Utils\formatToString('string'));
-        $this->assertEquals('', Utils\formatToString(''));
-        $this->assertEquals('1', Utils\formatToString(1));
-        $this->assertEquals('0', Utils\formatToString(0));
-        $this->assertEquals('1.23', Utils\formatToString(1.23));
-        $this->assertEquals('true', Utils\formatToString(true));
-        $this->assertEquals('false', Utils\formatToString(false));
-        $this->assertEquals('null', Utils\formatToString(null));
+        $this->assertEquals('string', Utils\toString('string'));
+        $this->assertEquals('', Utils\toString(''));
+        $this->assertEquals('1', Utils\toString(1));
+        $this->assertEquals('0', Utils\toString(0));
+        $this->assertEquals('1.23', Utils\toString(1.23));
+        $this->assertEquals('true', Utils\toString(true));
+        $this->assertEquals('false', Utils\toString(false));
+        $this->assertEquals('null', Utils\toString(null));
     }
 }

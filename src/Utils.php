@@ -2,7 +2,7 @@
 
 namespace GenDiff\Utils;
 
-function formatToString(mixed $value): string
+function toString(mixed $value): string
 {
     return match (gettype($value)) {
         'string' => $value,
