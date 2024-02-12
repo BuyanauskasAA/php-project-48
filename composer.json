@@ -17,7 +17,7 @@
         },
         "files": [
             "src/GenDiff.php",
-            "src/Utils.php",
+            "src/Parser.php",
             "src/Parser.php"
         ]
     },
