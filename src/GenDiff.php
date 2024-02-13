@@ -3,6 +3,7 @@
 namespace GenDiff;
 
 use function GenDiff\Parser\parseFile;
+use function GenDiff\Formatters\Stylish\makeStylish;
 
 function iter(array $data1, array $data2): array
 {
@@ -44,10 +45,14 @@ function iter(array $data1, array $data2): array
     }, $keys);
 }
 
-function genDiff(string $filepath1, string $filepath2): array
+function genDiff(string $filepath1, string $filepath2, string $formatName = 'stylish'): string
 {
     $data1 = parseFile($filepath1);
     $data2 = parseFile($filepath2);
 
-    return iter($data1, $data2);
+    $diff = iter($data1, $data2);
+
+    return match ($formatName) {
+        'stylish' => makeStylish($diff)
+    };
 }
