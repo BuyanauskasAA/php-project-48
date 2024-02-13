@@ -8,32 +8,16 @@ use function GenDiff\Formatters\Stylish\makeStylish;
 function getDiffNode(string $type, string $key, mixed $value): array
 {
     return match ($type) {
-        'added' => [
-            'type' => 'added',
-            'key' => $key,
-            'value' => $value
-        ],
-        'deleted' => [
-            'type' => 'deleted',
-            'key' => $key,
-            'value' => $value
-        ],
+        'added' => ['type' => 'added', 'key' => $key, 'value' => $value],
+        'deleted' => ['type' => 'deleted', 'key' => $key, 'value' => $value],
         'changed' => [
             'type' => 'changed',
             'key' => $key,
             'oldValue' => $value['oldValue'],
             'newValue' => $value['newValue']
         ],
-        'unchanged' => [
-            'type' => 'unchanged',
-            'key' => $key,
-            'value' => $value,
-        ],
-        'nested' => [
-            'type' => 'nested',
-            'key' => $key,
-            'children' => $value,
-        ]
+        'unchanged' => ['type' => 'unchanged', 'key' => $key, 'value' => $value,],
+        'nested' => ['type' => 'nested', 'key' => $key, 'children' => $value,]
     };
 }
 
