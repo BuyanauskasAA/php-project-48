@@ -4,6 +4,7 @@ namespace GenDiff\Formatters\Stylish;
 
 function stringify(mixed $value, $depth): string
 {
+    $line = '';
     $indentSize = 4;
     $bracketIndent = str_repeat(' ', $depth * $indentSize);
     $currentIndent = str_repeat(' ', ($depth + 1) * $indentSize);
@@ -12,15 +13,19 @@ function stringify(mixed $value, $depth): string
             $lines = array_map(function ($key) use ($value, $currentIndent, $depth) {
                 return "{$currentIndent}{$key}: " . stringify($value[$key], $depth + 1);
             }, array_keys($value));
-            return implode("\n", array_merge(['{'], $lines, ["{$bracketIndent}}"]));
-
+            $line =  implode("\n", array_merge(['{'], $lines, ["{$bracketIndent}}"]));
+            break;
         case 'boolean':
-            return $value ? 'true' : 'false';
+            $line = $value ? 'true' : 'false';
+            break;
         case 'NULL':
-            return 'null';
+            $line = 'null';
+            break;
         default:
-            return (string) $value;
+            $line = (string) $value;
     }
+
+    return $line;
 }
 
 
