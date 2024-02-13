@@ -5,42 +5,53 @@ namespace GenDiff;
 use function GenDiff\Parser\parseFile;
 use function GenDiff\Formatters\Stylish\makeStylish;
 
+function getDiffNode(string $type, string $key, mixed $value): array
+{
+    return match ($type) {
+        'added' => [
+            'type' => 'added',
+            'key' => $key,
+            'value' => $value
+        ],
+        'deleted' => [
+            'type' => 'deleted',
+            'key' => $key,
+            'value' => $value
+        ],
+        'changed' => [
+            'type' => 'changed',
+            'key' => $key,
+            'oldValue' => $value['oldValue'],
+            'newValue' => $value['newValue']
+        ],
+        'unchanged' => [
+            'type' => 'unchanged',
+            'key' => $key,
+            'value' => $value,
+        ],
+        'nested' => [
+            'type' => 'nested',
+            'key' => $key,
+            'children' => $value,
+        ]
+    };
+}
+
 function iter(array $data1, array $data2): array
 {
     $keys = array_keys([...$data1, ...$data2]);
     sort($keys);
     return array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data1)) {
-            return [
-                'type' => 'added',
-                'key' => $key,
-                'value' => $data2[$key],
-            ];
+            return getDiffNode('added', $key, $data2[$key]);
         } elseif (!array_key_exists($key, $data2)) {
-            return [
-                'type' => 'deleted',
-                'key' => $key,
-                'value' => $data1[$key],
-            ];
+            return getDiffNode('deleted', $key, $data1[$key]);
         } elseif (is_array($data1[$key]) && is_array($data2[$key])) {
-            return [
-                'type' => 'nested',
-                'key' => $key,
-                'children' => iter($data1[$key], $data2[$key]),
-            ];
+            return getDiffNode('nested', $key, iter($data1[$key], $data2[$key]));
         } elseif ($data1[$key] !== $data2[$key]) {
-            return [
-                'type' => 'changed',
-                'key' => $key,
-                'oldValue' => $data1[$key],
-                'newValue' => $data2[$key],
-            ];
+            return getDiffNode('changed', $key, ['oldValue' => $data1[$key], 'newValue' => $data2[$key]]);
         } else {
-            return [
-                'type' => 'unchanged',
-                'key' => $key,
-                'value' => $data1[$key],
-            ];
+            return getDiffNode('unchanged', $key, $data1[$key]);
         }
     }, $keys);
 }
