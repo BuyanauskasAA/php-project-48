@@ -2,12 +2,13 @@
 
 namespace GenDiff\Formatters\Stylish;
 
+const INDENT_SIZE = 4;
+
 function stringify(mixed $value, $depth): string
 {
     $line = '';
-    $indentSize = 4;
-    $bracketIndent = str_repeat(' ', $depth * $indentSize);
-    $currentIndent = str_repeat(' ', ($depth + 1) * $indentSize);
+    $bracketIndent = str_repeat(' ', $depth * INDENT_SIZE);
+    $currentIndent = str_repeat(' ', ($depth + 1) * INDENT_SIZE);
     switch (gettype($value)) {
         case 'array':
             $lines = array_map(function ($key) use ($value, $currentIndent, $depth) {
@@ -32,8 +33,7 @@ function stringify(mixed $value, $depth): string
 function makeStylish(array $diff, int $depth = 0): string
 {
 
-    $indentSize = 4;
-    $indent = str_repeat(' ', $depth * $indentSize);
+    $indent = str_repeat(' ', $depth * INDENT_SIZE);
     $lines = array_map(function ($node) use ($depth, $indent) {
         ['type' => $type, 'key' => $key] = $node;
         return match ($type) {
