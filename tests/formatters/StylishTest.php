@@ -4,7 +4,6 @@ namespace GenDiff\Tests\Formatters;
 
 use PHPUnit\Framework\TestCase;
 
-use function Gendiff\genDiff;
 use function GenDiff\Formatters\Stylish\makeStylish;
 
 class StylishTest extends TestCase
