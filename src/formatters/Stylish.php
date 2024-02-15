@@ -6,9 +6,10 @@ const INDENT_SIZE = 4;
 
 function stringify(mixed $value, int $depth): string
 {
-    $line = '';
     $bracketIndent = str_repeat(' ', $depth * INDENT_SIZE);
     $currentIndent = str_repeat(' ', ($depth + 1) * INDENT_SIZE);
+
+    $line = '';
     switch (gettype($value)) {
         case 'array':
             $lines = array_map(function ($key) use ($value, $currentIndent, $depth) {
