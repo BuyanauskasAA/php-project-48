@@ -4,7 +4,7 @@ namespace GenDiff\Formatters\Stylish;
 
 const INDENT_SIZE = 4;
 
-function stringify(mixed $value, $depth): string
+function stringify(mixed $value, int $depth): string
 {
     $line = '';
     $bracketIndent = str_repeat(' ', $depth * INDENT_SIZE);
