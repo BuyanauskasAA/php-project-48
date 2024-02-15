@@ -13,6 +13,16 @@ function stringify(mixed $value): string
     };
 }
 
+function flatten($lines)
+{
+    $flattenLine = fn (array $lines) => implode("\n", array_filter($lines, fn ($line) => $line !== ''));
+    $flattenLines = array_map(function ($line) use ($flattenLine) {
+        return is_array($line) ? $flattenLine($line) : $line;
+    }, $lines);
+
+    return $flattenLine($flattenLines);
+}
+
 function makePlain($diff, string $path = '')
 {
     $nestedLines = array_map(function ($node) use ($path) {
@@ -37,13 +47,5 @@ function makePlain($diff, string $path = '')
         }
     }, $diff);
 
-    $flattenLines = array_map(function ($line) {
-        if (is_array($line)) {
-            return implode("\n", array_filter($line, fn ($l) => $l !== ''));
-        } else {
-            return $line;
-        }
-    }, $nestedLines);
-
-    return implode("\n", array_filter($flattenLines, fn ($l) => $l !== ''));
+    return flatten($nestedLines);
 }
