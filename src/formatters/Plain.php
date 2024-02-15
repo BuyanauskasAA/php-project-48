@@ -26,8 +26,7 @@ function flatten($lines)
 function makePlain($diff, string $path = '')
 {
     $nestedLines = array_map(function ($node) use ($path) {
-        $key = $node['key'];
-        $path = $path === '' ? "{$key}" : "{$path}.{$key}";
+        $path = $path === '' ? "{$node['key']}" : "{$path}.{$node['key']}";
 
         $line = '';
         switch ($node['type']) {
