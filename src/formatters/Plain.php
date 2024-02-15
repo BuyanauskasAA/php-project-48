@@ -26,25 +26,31 @@ function flatten($lines)
 function makePlain($diff, string $path = '')
 {
     $nestedLines = array_map(function ($node) use ($path) {
-        $type = $node['type'];
         $key = $node['key'];
         $path = $path === '' ? "{$key}" : "{$path}.{$key}";
 
-        switch ($type) {
+        $line = '';
+        switch ($node['type']) {
             case 'added':
-                $value = stringify($node['value']);
-                return "Property '{$path}' was added with value: $value";
+                $line = "Property '{$path}' was added with value: " . stringify($node['value']);
+                break;
             case 'deleted':
-                return "Property '{$path}' was removed";
+                $line = "Property '{$path}' was removed";
+                break;
             case 'changed':
                 $oldValue = stringify($node['oldValue']);
                 $newValue = stringify($node['newValue']);
-                return "Property '{$path}' was updated. From {$oldValue} to {$newValue}";
+                $line = "Property '{$path}' was updated. From {$oldValue} to {$newValue}";
+                break;
             case 'unchanged':
-                return '';
+                $line = '';
+                break;
             case 'nested':
-                return makePlain($node['children'], $path);
+                $line = makePlain($node['children'], $path);
+                break;
         }
+
+        return $line;
     }, $diff);
 
     return flatten($nestedLines);
