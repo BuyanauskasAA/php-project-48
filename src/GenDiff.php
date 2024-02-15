@@ -4,6 +4,7 @@ namespace GenDiff;
 
 use function GenDiff\Parser\parseFile;
 use function GenDiff\Formatters\Stylish\makeStylish;
+use function GenDiff\Formatters\Plain\makePlain;
 
 function getDiffNode(string $type, string $key, mixed $value): array
 {
@@ -48,6 +49,7 @@ function genDiff(string $filepath1, string $filepath2, string $formatName = 'sty
     $diff = iter($data1, $data2);
 
     return match ($formatName) {
-        'stylish' => makeStylish($diff)
+        'stylish' => makeStylish($diff),
+        'plain' => makePlain($diff)
     };
 }
