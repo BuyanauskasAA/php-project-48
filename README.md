@@ -10,6 +10,12 @@
 make install
 ```
 
+## Usage
+
+```
+gendiff [--format <fmt>] <firstFile> <secondFile>
+```
+
 ## Description
 
 Gendiff generates difference between two files.  
