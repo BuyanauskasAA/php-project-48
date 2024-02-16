@@ -41,6 +41,8 @@ function makePlain(array $diff, string $path = ''): string
                 return '';
             case 'nested':
                 return makePlain($node['children'], $newPath);
+            default:
+                return "Wrong node type: {$node['type']}";
         }
     }, $diff);
 
