@@ -13,7 +13,7 @@ function stringify(mixed $value): string
     };
 }
 
-function flatten($lines)
+function flatten(array $lines): string
 {
     $flattenLine = fn (array $lines) => implode("\n", array_filter($lines, fn ($line) => $line !== ''));
     $flattenLines = array_map(function ($line) use ($flattenLine) {
@@ -23,7 +23,7 @@ function flatten($lines)
     return $flattenLine($flattenLines);
 }
 
-function makePlain($diff, string $path = '')
+function makePlain(array $diff, string $path = ''): string
 {
     $nestedLines = array_map(function ($node) use ($path) {
         $path = $path === '' ? "{$node['key']}" : "{$path}.{$node['key']}";
