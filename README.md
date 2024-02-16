@@ -20,3 +20,16 @@ Gendiff includes three output formats:
 * slain
 * json
   
+## Examples
+
+* stylish
+  
+  [![asciicast](https://asciinema.org/a/UaajPGa3jpPjDYHDQ80Lu4UnH.svg)](https://asciinema.org/a/UaajPGa3jpPjDYHDQ80Lu4UnH)
+  
+* plain
+
+  [![asciicast](https://asciinema.org/a/fYBwy9x33pZdu8QbFCcLZW1eI.svg)](https://asciinema.org/a/fYBwy9x33pZdu8QbFCcLZW1eI)
+
+* json
+
+  [![asciicast](https://asciinema.org/a/Ird2ZHQ7Ibh5V8tGn6UGAdj71.svg)](https://asciinema.org/a/Ird2ZHQ7Ibh5V8tGn6UGAdj71)
