@@ -28,28 +28,20 @@ function makePlain(array $diff, string $path = ''): string
     $nestedLines = array_map(function ($node) use ($path) {
         $newPath = $path === '' ? "{$node['key']}" : "{$path}.{$node['key']}";
 
-        $line = '';
         switch ($node['type']) {
             case 'added':
-                $line = "Property '{$newPath}' was added with value: " . stringify($node['value']);
-                break;
+                return "Property '{$newPath}' was added with value: " . stringify($node['value']);
             case 'deleted':
-                $line = "Property '{$newPath}' was removed";
-                break;
+                return "Property '{$newPath}' was removed";
             case 'changed':
                 $oldValue = stringify($node['oldValue']);
                 $newValue = stringify($node['newValue']);
-                $line = "Property '{$newPath}' was updated. From {$oldValue} to {$newValue}";
-                break;
+                return "Property '{$newPath}' was updated. From {$oldValue} to {$newValue}";
             case 'unchanged':
-                $line = '';
-                break;
+                return '';
             case 'nested':
-                $line = makePlain($node['children'], $newPath);
-                break;
+                return makePlain($node['children'], $newPath);
         }
-
-        return $line;
     }, $diff);
 
     return flatten($nestedLines);
