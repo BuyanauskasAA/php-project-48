@@ -19,14 +19,22 @@ function getDiffNode(string $type, string $key, mixed $value): array
             'newValue' => $value['newValue']
         ],
         'unchanged' => ['type' => 'unchanged', 'key' => $key, 'value' => $value],
-        'nested' => ['type' => 'nested', 'key' => $key, 'children' => $value]
+        'nested' => ['type' => 'nested', 'key' => $key, 'children' => $value],
+        default => "Wrong node type: {$type}"
     };
+}
+
+function sortArray(array $arr): array
+{
+    $newArr = $arr;
+    sort($newArr);
+    return $newArr;
 }
 
 function iter(array $data1, array $data2): array
 {
-    $keys = array_keys([...$data1, ...$data2]);
-    sort($keys);
+    $keys = sortArray(array_keys([...$data1, ...$data2]));
+
     return array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data1)) {
             return getDiffNode('added', $key, $data2[$key]);
@@ -52,7 +60,8 @@ function genDiff(string $filepath1, string $filepath2, string $formatName = 'sty
     $formattedDiff = match ($formatName) {
         'stylish' => makeStylish($diff),
         'plain' => makePlain($diff),
-        'json' => makeJson($diff)
+        'json' => makeJson($diff),
+        default => "Wrong format name: {$formatName}"
     };
 
     return $formattedDiff;
