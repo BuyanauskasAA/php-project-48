@@ -18,8 +18,8 @@ function getDiffNode(string $type, string $key, mixed $value): array
             'oldValue' => $value['oldValue'],
             'newValue' => $value['newValue']
         ],
-        'unchanged' => ['type' => 'unchanged', 'key' => $key, 'value' => $value,],
-        'nested' => ['type' => 'nested', 'key' => $key, 'children' => $value,]
+        'unchanged' => ['type' => 'unchanged', 'key' => $key, 'value' => $value],
+        'nested' => ['type' => 'nested', 'key' => $key, 'children' => $value]
     };
 }
 
@@ -49,9 +49,11 @@ function genDiff(string $filepath1, string $filepath2, string $formatName = 'sty
 
     $diff = iter($data1, $data2);
 
-    return match ($formatName) {
+    $formattedDiff = match ($formatName) {
         'stylish' => makeStylish($diff),
         'plain' => makePlain($diff),
         'json' => makeJson($diff)
     };
+
+    return $formattedDiff;
 }
