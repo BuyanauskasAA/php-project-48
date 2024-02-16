@@ -9,25 +9,19 @@ function stringify(mixed $value, int $depth): string
     $bracketIndent = str_repeat(' ', $depth * INDENT_SIZE);
     $currentIndent = str_repeat(' ', ($depth + 1) * INDENT_SIZE);
 
-    $line = '';
     switch (gettype($value)) {
         case 'array':
             $lines = array_map(function ($key) use ($value, $currentIndent, $depth) {
                 return "{$currentIndent}{$key}: " . stringify($value[$key], $depth + 1);
             }, array_keys($value));
-            $line =  implode("\n", array_merge(['{'], $lines, ["{$bracketIndent}}"]));
-            break;
+            return  implode("\n", array_merge(['{'], $lines, ["{$bracketIndent}}"]));
         case 'boolean':
-            $line = $value ? 'true' : 'false';
-            break;
+            return $value ? 'true' : 'false';
         case 'NULL':
-            $line = 'null';
-            break;
+            return 'null';
         default:
-            $line = (string) $value;
+            return (string) $value;
     }
-
-    return $line;
 }
 
 
@@ -45,7 +39,8 @@ function makeStylish(array $diff, int $depth = 0): string
                 . "\n" .
                 "{$indent}  + {$key}: " . stringify($node['newValue'], $depth + 1),
             'unchanged' => "{$indent}    {$key}: " . stringify($node['value'], $depth + 1),
-            'nested' => "{$indent}    {$key}: " . makeStylish($node['children'], $depth + 1)
+            'nested' => "{$indent}    {$key}: " . makeStylish($node['children'], $depth + 1),
+            default => "Wrong node type: {$type}"
         };
     }, $diff);
 
