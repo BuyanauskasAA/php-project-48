@@ -8,7 +8,7 @@ function parseFile(string $filepath): array
 {
     $extension = pathinfo($filepath, PATHINFO_EXTENSION);
     return match ($extension) {
-        'json' => json_decode(file_get_contents($filepath), true),
+        'json' => json_decode(file_get_contents($filepath) ?? '', true),
         'yaml', 'yml' => Yaml::parseFile($filepath),
         default => "Wrong format {$extension}"
     };
