@@ -5,6 +5,7 @@ namespace GenDiff;
 use function GenDiff\Parser\parseFile;
 use function GenDiff\Formatters\Stylish\makeStylish;
 use function GenDiff\Formatters\Plain\makePlain;
+use function GenDiff\Formatters\Json\makeJson;
 
 function getDiffNode(string $type, string $key, mixed $value): array
 {
@@ -50,6 +51,7 @@ function genDiff(string $filepath1, string $filepath2, string $formatName = 'sty
 
     return match ($formatName) {
         'stylish' => makeStylish($diff),
-        'plain' => makePlain($diff)
+        'plain' => makePlain($diff),
+        'json' => makeJson($diff)
     };
 }
