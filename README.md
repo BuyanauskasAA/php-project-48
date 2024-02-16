@@ -3,3 +3,20 @@
 [![tests](https://github.com/BuyanauskasAA/php-project-48/actions/workflows/tests.yml/badge.svg)](https://github.com/BuyanauskasAA/php-project-48/actions/workflows/tests.yml)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/bf0aa0546b01e685d5dd/test_coverage)](https://codeclimate.com/github/BuyanauskasAA/php-project-48/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/bf0aa0546b01e685d5dd/maintainability)](https://codeclimate.com/github/BuyanauskasAA/php-project-48/maintainability)
+
+## Setup
+
+``` bash
+make install
+```
+
+## Description
+
+Gendiff generates difference between two files.  
+Supports files in JSON and YAML formats.  
+Gendiff includes three output formats:  
+
+* stylish (default format)
+* slain
+* json
+  
