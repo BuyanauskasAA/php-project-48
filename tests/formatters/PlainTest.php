@@ -125,7 +125,7 @@ class PlainTest extends TestCase
         ]
     ];
 
-    public function testStylish(): void
+    public function testPlain(): void
     {
         $expected = file_get_contents(__DIR__ . '/../fixtures/expectedPlain.txt');
         $actual = makePlain($this->diff);
