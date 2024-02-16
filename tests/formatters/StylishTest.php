@@ -1,10 +1,10 @@
 <?php
 
-namespace GenDiff\Tests\Formatters;
+namespace Differ\Tests\Formatters;
 
 use PHPUnit\Framework\TestCase;
 
-use function GenDiff\Formatters\Stylish\makeStylish;
+use function Differ\Formatters\Stylish\makeStylish;
 
 class StylishTest extends TestCase
 {

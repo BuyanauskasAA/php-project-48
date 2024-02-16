@@ -1,11 +1,11 @@
 <?php
 
-namespace GenDiff;
+namespace Differ\Differ;
 
-use function GenDiff\Parser\parseFile;
-use function GenDiff\Formatters\Stylish\makeStylish;
-use function GenDiff\Formatters\Plain\makePlain;
-use function GenDiff\Formatters\Json\makeJson;
+use function Differ\Parser\parseFile;
+use function Differ\Formatters\Stylish\makeStylish;
+use function Differ\Formatters\Plain\makePlain;
+use function Differ\Formatters\Json\makeJson;
 
 function getDiffNode(string $type, string $key, mixed $value): array
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace GenDiff\Formatters\Plain;
+namespace Differ\Formatters\Plain;
 
 function stringify(mixed $value): string
 {

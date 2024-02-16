@@ -1,10 +1,10 @@
 <?php
 
-namespace GenDiff\Tests\Formatters;
+namespace Differ\Tests\Formatters;
 
 use PHPUnit\Framework\TestCase;
 
-use function GenDiff\Formatters\Plain\makePlain;
+use function Differ\Formatters\Plain\makePlain;
 
 class PlainTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace GenDiff\Tests;
+namespace Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
-use GenDiff\Parser;
+use Differ\Parser;
 
 class ParserTest extends TestCase
 {

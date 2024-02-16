@@ -1,10 +1,10 @@
 <?php
 
-namespace GenDiff\Tests\Formatters;
+namespace Differ\Tests\Formatters;
 
 use PHPUnit\Framework\TestCase;
 
-use function GenDiff\Formatters\Json\makeJson;
+use function Differ\Formatters\Json\makeJson;
 
 class JsonTest extends TestCase
 {

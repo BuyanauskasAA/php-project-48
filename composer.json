@@ -13,10 +13,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "GenDiff\\": "src/"
+            "Differ\\": "src/"
         },
         "files": [
-            "src/GenDiff.php",
+            "src/Differ.php",
             "src/Parser.php",
             "src/formatters/Stylish.php",
             "src/formatters/Plain.php",
