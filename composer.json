@@ -19,7 +19,8 @@
             "src/GenDiff.php",
             "src/Parser.php",
             "src/formatters/Stylish.php",
-            "src/formatters/Plain.php"
+            "src/formatters/Plain.php",
+            "src/formatters/Json.php"
         ]
     },
     "require": {
