@@ -24,16 +24,10 @@ function getDiffNode(string $type, string $key, mixed $value): array
     };
 }
 
-function sortArray(array $arr): array
-{
-    $newArr = $arr;
-    asort($newArr);
-    return $newArr;
-}
-
 function iter(array $data1, array $data2): array
 {
-    $keys = sortArray(array_keys([...$data1, ...$data2]));
+    $keys = array_keys([...$data1, ...$data2]);
+    $sortedKeys = \Functional\sort($keys, fn ($left, $right) => strcmp($left, $right));
 
     return array_map(function ($key) use ($data1, $data2) {
         if (!array_key_exists($key, $data1)) {
@@ -47,7 +41,7 @@ function iter(array $data1, array $data2): array
         } else {
             return getDiffNode('unchanged', $key, $data1[$key]);
         }
-    }, $keys);
+    }, $sortedKeys);
 }
 
 function genDiff(string $filepath1, string $filepath2, string $formatName = 'stylish'): string
