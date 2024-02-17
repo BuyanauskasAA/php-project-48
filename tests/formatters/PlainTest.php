@@ -125,10 +125,26 @@ class PlainTest extends TestCase
         ]
     ];
 
+    private $badDiff = [
+        [
+            'type' => 'bad node',
+            'key' => 'key',
+            'value' => 'value'
+        ]
+    ];
+
     public function testPlain(): void
     {
         $expected = file_get_contents(__DIR__ . '/../fixtures/expectedPlain.txt');
         $actual = makePlain($this->diff);
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testWrongNodeName(): void
+    {
+
+        $expected = 'Wrong node type: bad node';
+        $actual = makePlain($this->badDiff);
         $this->assertEquals($expected, $actual);
     }
 }
