@@ -27,7 +27,7 @@ function getDiffNode(string $type, string $key, mixed $value): array
 function sortArray(array $arr): array
 {
     $newArr = $arr;
-    sort($newArr);
+    asort($newArr);
     return $newArr;
 }
 
